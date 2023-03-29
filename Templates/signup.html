@@ -51,7 +51,8 @@
                 <h1 class="lg:text-3xl text-xl font-semibold mb-6"> Sign Up</h1>
                 <!--<p class="mb-2 text-black text-lg"> Register to manage your account </p>-->
                 
-                <form action="", method="post">
+                <form action="", method="POST">
+                    {% csrf_token %}
                     <!--<div class="flex lg:flex-row flex-col lg:space-x-2">
                         <input type="text" placeholder="First Name"  class="bg-gray-200 mb-2 shadow-none  dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
                         <input type="text" placeholder="Last Name" class="bg-gray-200 mb-2 shadow-none  dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
@@ -67,7 +68,7 @@
                         </div>
                         <a href="#"> Terms and Conditions</a>
                     </div>
-                    <button type="submit" class="bg-gradient-to-br from-pink-500 py-3 rounded-md text-white text-xl to-red-400 w-full">Login</button>
+                    <button type="submit" class="bg-gradient-to-br from-pink-500 py-3 rounded-md text-white text-xl to-red-400 w-full">Sign Up</button>
                     <div class="text-center mt-5 space-x-2">
                         <p class="text-base"> Do you have an account? <a href="form-login.html"> SignUp </a></p>
                     </div>
