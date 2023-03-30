@@ -27,7 +27,7 @@ def SignIn(request):
 
 
 def signup(request):
-
+    
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
@@ -46,11 +46,13 @@ def signup(request):
                 user.save()
 
                 # Log user in
+                user_login = auth.authenticate(username=username,password=password)
+                auth.login(request,user_login)
                 # Create a new Profile
                 user_model = User.objects.get(username=username)
                 newProfile = Profile.objects.create(user=user_model,id_user=user_model.id)
                 newProfile.save()
-                return redirect('signup')
+                return redirect('settings')
         else:
             messages.info(request, 'Password not Matching ')
             return redirect('signup')
@@ -60,3 +62,7 @@ def signup(request):
 def logout(request):
     auth.logout(request)
     return redirect('/signin')
+
+@login_required(login_url='/signin')
+def settings(request):
+    return render(request,'settings.html')
