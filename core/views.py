@@ -4,8 +4,26 @@ from django.contrib import messages
 from .models import Profile
 # Create your views here.
 
+
 def index(request):
     return render(request,'index.html')
+
+def SignIn(request):
+    
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None:
+            auth.login(request,user)
+            return redirect('/')
+        else:
+            messages.info(request, 'Invalid Credentials ')
+            return redirect('/signin')
+    else:
+        return render(request,'signin.html')
+
 
 def signup(request):
 
@@ -36,3 +54,7 @@ def signup(request):
             messages.info(request, 'Password not Matching ')
             return redirect('signup')
     else: return render(request,'signup.html')
+
+def logout(request):
+    auth.logout(request)
+    return redirect('signin')
