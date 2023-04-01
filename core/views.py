@@ -88,7 +88,7 @@ def settings(request):
 
             user_profile.profileimg = img
             user_profile.boi = bio
-            user_profile.profileimg = img
+            user_profile.location = loc
             user_profile.save()
         return redirect('settings')    
     

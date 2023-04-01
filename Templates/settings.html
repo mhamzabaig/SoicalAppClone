@@ -49,7 +49,6 @@
                             {% csrf_token %}
                             <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
                            
-                            
                                 <div class="col-span-2">
                                     <label for="">Profile Image </label>
                                     <img width="75" height="75" src="{{user_profile.profileimg.url}}" >
@@ -58,11 +57,11 @@
                             
                                 <div class="col-span-2">
                                     <label for="about"> Bio </label>  
-                                    <textarea id="about" name="bio" rows="3"  class="shadow-none bg-gray-100">{{user_profle.bio}}</textarea>
+                                    <textarea id="about" name="bio" rows="3"  class="shadow-none bg-gray-100">{{user_profile.boi}}</textarea>
                                 </div> 
                                 <div class="col-span-2">
                                     <label for=""> Location</label>
-                                    <input type="text" value="{{user_profle.location}}" name="location"  class="shadow-none bg-gray-100">
+                                    <input type="text" value="{{user_profile.location}}" name="location" class="shadow-none bg-gray-100">
                                 </div>
                                 
                            </div> 
