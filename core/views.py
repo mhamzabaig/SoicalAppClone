@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
-from .models import Profile
+from .models import Profile,Post
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 # Create your views here.
@@ -68,7 +68,16 @@ def logout(request):
 
 @login_required(login_url='/signin')
 def upload_post(request):
-    return HttpResponse(" Uploading A Post ")
+    if request.method == 'POST':
+        user = request.user.username
+        img = request.FILES.get('post_image')
+        caption = request.POST['caption']
+
+        new_post = Post.objects.create(user=user,image=img,caption=caption)
+        new_post.save()
+        return redirect('/')
+    else:
+        return HttpResponse(" Uploading A Post ")
 
 @login_required(login_url='/signin')
 def settings(request):
