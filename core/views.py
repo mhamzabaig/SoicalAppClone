@@ -66,4 +66,30 @@ def logout(request):
 @login_required(login_url='/signin')
 def settings(request):
     user_profile= Profile.objects.get(user=request.user)
-    return render(request,'settings.html')
+
+    if request.method == 'POST':
+
+        if request.FILES.get('image') != None:
+            print("yes")
+            img = request.FILES.get('image')
+            bio = request.POST['bio']
+            loc = request.POST['location']
+
+            user_profile.profileimg = img
+            user_profile.boi = bio
+            user_profile.location = loc
+            user_profile.save()
+            
+        elif request.FILES.get('image') == None:
+            print("No")
+            img = user_profile.profileimg
+            bio = request.POST['bio']
+            loc = request.POST['location']
+
+            user_profile.profileimg = img
+            user_profile.boi = bio
+            user_profile.profileimg = img
+            user_profile.save()
+        return redirect('settings')    
+    
+    return render(request,'settings.html',{'user_profile':user_profile})
