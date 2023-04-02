@@ -51,6 +51,19 @@ def SignIn(request):
     else:
         return render(request,'signin.html')
 
+@login_required(login_url='/signin')
+def profile(request,pk):
+    user = User.objects.get(username=pk)
+    user_profile = Profile.objects.get(user=user)
+    user_posts = Post.objects.filter(user=pk)
+    user_posts_len = len(user_posts)
+    context = {
+        'user_object':user,
+        'user_profile':user_profile,
+        'user_posts':user_posts,
+        'user_posts_len':user_posts_len
+    }
+    return render(request,'profile.html',context)
 
 def signup(request):
     
