@@ -23,15 +23,15 @@ def like_post(request):
 
     # Checking if same user has liked a single post more than once
     like_filter = LikePost.objects.filter(post_id=post_id,username=username)
-
-    if like_filter == None:
+    
+    if len(like_filter) == 0:
         new_like = LikePost.objects.create(post_id=post_id,username=username)
         new_like.save()
-        post.no_of_likes +=1
+        post.no_of_likes  += 1
         post.save()
-    else:
+    elif len(like_filter) and post.no_of_likes>0:
         like_filter.delete()
-        post.no_of_likes -=1
+        post.no_of_likes -=  1
         post.save()
     return redirect('/')
 
