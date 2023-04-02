@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
-from .models import Profile,Post
+from .models import Profile,Post,LikePost
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 # Create your views here.
@@ -16,7 +16,24 @@ def index(request):
     return render(request,'index.html',{'user_profile':user_profile,'posts':posts})
 
 def like_post(request):
-    pass
+    username = request.user.username
+    post_id = request.GET.get('post_id')
+
+    post = Post.objects.get(id=post_id)
+
+    # Checking if same user has liked a single post more than once
+    like_filter = LikePost.objects.filter(post_id=post_id,username=username)
+
+    if like_filter == None:
+        new_like = LikePost.objects.create(post_id=post_id,username=username)
+        new_like.save()
+        post.no_of_likes +=1
+        post.save()
+    else:
+        like_filter.delete()
+        post.no_of_likes -=1
+        post.save()
+    return redirect('/')
 
 def SignIn(request):
     
