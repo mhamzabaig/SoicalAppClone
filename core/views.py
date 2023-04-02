@@ -15,6 +15,9 @@ def index(request):
     
     return render(request,'index.html',{'user_profile':user_profile,'posts':posts})
 
+def like_post(request):
+    pass
+
 def SignIn(request):
     
     if request.method == 'POST':
