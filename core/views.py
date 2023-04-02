@@ -65,6 +65,10 @@ def profile(request,pk):
     }
     return render(request,'profile.html',context)
 
+@login_required(login_url='/signin')
+def follow(request):
+    pass
+
 def signup(request):
     
     if request.method == 'POST':
@@ -117,6 +121,7 @@ def upload_post(request):
 
 @login_required(login_url='/signin')
 def settings(request):
+
     user_profile= Profile.objects.get(user=request.user)
 
     if request.method == 'POST':
@@ -142,6 +147,6 @@ def settings(request):
             user_profile.boi = bio
             user_profile.location = loc
             user_profile.save()
-        return redirect('settings')    
+        return redirect('/')    
     
     return render(request,'settings.html',{'user_profile':user_profile})
