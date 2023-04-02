@@ -53,12 +53,12 @@ def SignIn(request):
 
 @login_required(login_url='/signin')
 def profile(request,pk):
-    user = User.objects.get(username=pk)
-    user_profile = Profile.objects.get(user=user)
+    user_object = User.objects.get(username=pk)
+    user_profile = Profile.objects.get(user=user_object)
     user_posts = Post.objects.filter(user=pk)
     user_posts_len = len(user_posts)
     context = {
-        'user_object':user,
+        'user_object':user_object,
         'user_profile':user_profile,
         'user_posts':user_posts,
         'user_posts_len':user_posts_len
