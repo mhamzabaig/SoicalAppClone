@@ -29,6 +29,7 @@ def index(request):
     
     return render(request,'index.html',{'user_profile':user_profile,'posts':feed_list})
 
+@login_required(login_url='/signin')
 def like_post(request):
     username = request.user.username
     post_id = request.GET.get('post_id')
