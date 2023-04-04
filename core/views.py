@@ -31,7 +31,16 @@ def index(request):
 
 @login_required(login_url='/signin')
 def search(request):
-    return render(request,'search.html')
+
+    user_object = User.objects.get(username=request.user.username)
+    user_profile = Profile.objects.get(user=user_object)
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        
+
+
+    return render(request,'search.html',{'user_profile':user_profile})
 
 @login_required(login_url='/signin')
 def like_post(request):
