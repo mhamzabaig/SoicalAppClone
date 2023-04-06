@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-c1=irg_=9zlkj$k2373r2ontzlmx*8094hrly4&cw)!!#^9^!7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ceaf-2400-adc5-46b-ce00-a1e5-bb0e-bfb3-b8aa.in.ngrok.io']
-CSRF_TRUSTED_ORIGINS = ['https://ceaf-2400-adc5-46b-ce00-a1e5-bb0e-bfb3-b8aa.in.ngrok.io']
+ALLOWED_HOSTS = ['ceaf-2400-adc5-46b-ce00-a1e5-bb0e-bfb3-b8aa.in.ngrok.io','127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://ceaf-2400-adc5-46b-ce00-a1e5-bb0e-bfb3-b8aa.in.ngrok.io','http://127.0.0.1']
 
 # Application definition
 
