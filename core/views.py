@@ -214,6 +214,7 @@ def upload_post(request):
     else:
         return HttpResponse(" Uploading A Post ")
 
+
 @login_required(login_url='/signin')
 def settings(request):
 
